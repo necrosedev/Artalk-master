@@ -33,8 +33,6 @@ const insaneOptions = {
   ],
   allowedAttributes: {
     '*': ['title', 'accesskey'],
-    a: ['href', 'name', 'target', 'aria-label', 'rel'],
-    img: ['src', 'alt', 'title', 'atk-emoticon', 'aria-label', 'data-src', 'class', 'loading'],
     // for code highlight
     code: ['class'],
     span: ['class', 'style'],
