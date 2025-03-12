@@ -6,12 +6,7 @@ const insaneOptions = {
   // @link https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-8495
   // @link https://leucosite.com/Microsoft-Edge-RCE/
   // @link https://medium.com/@knownsec404team/analysis-of-the-security-issues-of-url-scheme-in-pc-from-cve-2018-8495-934478a36756
-  allowedSchemes: [
-    'http',
-    'https',
-    'mailto',
-    'data', // for support base64 encoded image (安全性有待考虑)
-  ],
+  allowedSchemes: [],
   allowedTags: [
     'abbr',
     'article',
