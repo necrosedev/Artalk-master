@@ -43,10 +43,10 @@ function renderVerifyBadge(ctx: Render) {
     $badge.style.backgroundColor = badgeColor || ''
     ctx.$headerBadgeWrap.append($badge)
   } else if (ctx.data.is_verified) {
-    const $verifiedBadge = Utils.createElement(
+    /*const $verifiedBadge = Utils.createElement(
       `<span class="atk-icon-verified" title="${$t('emailVerified')}"></span>`,
     ) // 邮箱验证徽章
-    ctx.$headerBadgeWrap.append($verifiedBadge)
+    ctx.$headerBadgeWrap.append($verifiedBadge)*/
   }
 
   if (ctx.data.is_pinned) {
