@@ -5,7 +5,7 @@ import type Render from '../render'
  * 评论头像界面
  */
 export default function renderAvatar(r: Render) {
-  const $avatar = r.$el.querySelector<HTMLElement>('.atk-avatar')!
+  /*const $avatar = r.$el.querySelector<HTMLElement>('.atk-avatar')!
   const $avatarImg = Utils.createElement<HTMLImageElement>('<img />')
 
   const avatarURLBuilder = r.opts.avatarURLBuilder
@@ -20,5 +20,5 @@ export default function renderAvatar(r: Render) {
     $avatar.append($avatarA)
   } else {
     $avatar.append($avatarImg)
-  }
+  }*/
 }
