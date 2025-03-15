@@ -167,10 +167,6 @@ func logger(fb *fiber.App, debugMode bool) {
 		Format:        "[HTTP] ${time} | ${status} | ${latency} | ${ip} | ${method} | ${path} | ${error} | ${respHeader:X-Request-ID}",
 		Output:        io.Discard,
 		DisableColors: true,
-		Filter: func(c *fiber.Ctx) bool {
-			status := c.Response().StatusCode()
-			return status == 404 || status == 403 // Filter agar tidak log 404 dan 403
-		},
 		Done: func(c *fiber.Ctx, msg []byte) {
 			l := log.StandardLogger().WithOptions(
 				zap.AddStacktrace(zapcore.DPanicLevel),
@@ -182,7 +178,9 @@ func logger(fb *fiber.App, debugMode bool) {
 					l.Info(string(msg))
 				}
 			} else {
-				l.Error(string(msg))
+				if code > 404 {
+					l.Error(string(msg))
+				}
 			}
 		},
 	}))
