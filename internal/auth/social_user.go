@@ -31,9 +31,8 @@ func GetSocialUser(u goth.User) SocialUser {
 	if u.Email == "" {
 		u.Email = u.UserID + "@" + u.Provider + ".com"
 	}
-	
+
 	// Name patch
-	fmt.Printf("User ")
 	if u.Name == "" && u.Email != "" {
 		// try extract name from email
 		u.Name = strings.Split(u.Email, "@")[0]
