@@ -55,6 +55,10 @@ func Serve(app *core.App) (*fiber.App, error) {
 		EnableIPValidation: true,
 	})
 
+	fb.Get("/favicon.ico", func(c *fiber.Ctx) error {
+		return c.SendStatus(fiber.StatusNoContent) // 204 No Content
+	})
+
 	reqID(fb)
 	logger(fb, app.Conf().Debug)
 	swaggerDocs(fb)
