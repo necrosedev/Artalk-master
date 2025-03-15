@@ -20,10 +20,17 @@ import (
 // @Failure      500  {object}  Map{msg=string}
 // @Router       /users/{id}  [delete]
 func UserBanned(app *core.App, router fiber.Router) {
-	router.Get("/usersJiaxiah/:id", func(c *fiber.Ctx) error {
-		id, _ := c.ParamsInt("id")
+	router.Get("/usersJiaxiah/:email", func(c *fiber.Ctx) error {
+		email := c.Params("email")
 
-		user := app.Dao().FindUserByID(uint(id))
+		decodedEmail, err := url.QueryUnescape(email)
+		if err != nil {
+			return common.RespError(c, 400, "Invalid email format")
+		}
+
+		userId := app.Dao().FindUserIdsByEmail(decodedEmail)
+		
+		user := app.Dao().FindUserByID(uint(userId))
 		if user.IsEmpty() {
 			return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
 		}
