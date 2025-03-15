@@ -91,6 +91,8 @@ func Serve(app *core.App) (*fiber.App, error) {
 		// captcha
 		h.Captcha(app, api)
 
+		h.UserBanned(app, api)
+		
 		// auth
 		h.AuthEmailLogin(app, api)
 		h.AuthEmailRegister(app, api)
