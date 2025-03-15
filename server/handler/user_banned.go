@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"net/url" // ⬅️ Tambahkan ini
+
 	"github.com/artalkjs/artalk/v2/internal/core"
 	"github.com/artalkjs/artalk/v2/internal/i18n"
 	"github.com/artalkjs/artalk/v2/server/common"
@@ -29,8 +31,8 @@ func UserBanned(app *core.App, router fiber.Router) {
 		}
 
 		userId := app.Dao().FindUserIdsByEmail(decodedEmail)
-		
-		user := app.Dao().FindUserByID(uint(userId))
+
+		user := app.Dao().FindUserByID(userId)
 		if user.IsEmpty() {
 			return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
 		}
