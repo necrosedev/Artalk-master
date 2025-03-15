@@ -50,7 +50,7 @@ func (dao *Dao) CookComment(c *entity.Comment) entity.CookedComment {
 		UserID:         c.UserID,
 		Nick:           user.Name,
 		EmailEncrypted: getCommentEmailHash(user.Email),
-		Link:           user.Link,
+		//Link:           user.Link,
 		UA:             c.UA,
 		Date:           c.CreatedAt.Local().Format(CommonDateTimeFormat),
 		IsCollapsed:    c.IsCollapsed,

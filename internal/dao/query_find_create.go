@@ -69,9 +69,10 @@ func (dao *Dao) FindCreateUser(name string, email string, link string) (entity.U
 	if !utils.ValidateEmail(email) {
 		return entity.User{}, fmt.Errorf("email is invalid")
 	}
-	if link != "" && !utils.ValidateURL(link) {
-		link = ""
-	}
+	//if link != "" && !utils.ValidateURL(link) {
+	link = ""
+	//}
+	
 	return FindCreateAction(fmt.Sprintf(UserByNameEmailKey, name, email), func() (entity.User, error) {
 		return dao.FindUser(name, email), nil
 	}, func() (entity.User, error) {
