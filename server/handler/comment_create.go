@@ -113,6 +113,7 @@ func CommentCreate(app *core.App, router fiber.Router) {
 		}
 
 		if user.IsBanned {
+			log.Error("[CommentCreate] User banned")
 			return common.RespError(c, 500, i18n.T("Comment failed"))
 		}
 
