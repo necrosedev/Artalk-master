@@ -2,7 +2,6 @@ package auth
 
 import (
 	"strings"
-	"fmt"
 
 	"github.com/markbates/goth"
 )
