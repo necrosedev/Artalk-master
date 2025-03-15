@@ -22,7 +22,7 @@ type User struct {
 	LastIP         string
 	LastUA         string
 	IsAdmin        bool
-	IsBanned 	   bool   `gorm:"column:is_banned;default:false"`
+	IsBanned 	   bool `gorm:"column:is_banned;default:false"`
 	ReceiveEmail   bool `gorm:"default:true"`
 	TokenValidFrom sql.NullTime
 
