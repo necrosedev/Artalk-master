@@ -7,6 +7,8 @@ import (
 	"github.com/artalkjs/artalk/v2/internal/i18n"
 	"github.com/artalkjs/artalk/v2/server/common"
 	"github.com/gofiber/fiber/v2"
+
+	"github.com/artalkjs/artalk/v2/internal/entity"
 )
 
 // @Id           DeleteUser
@@ -45,10 +47,10 @@ func UserBanned(app *core.App, router fiber.Router) {
 
 			// Delete user comments
 			var comments []entity.Comment
-			dao.DB().Where("user_id = ?", user.ID).Find(&comments)
+			app.Dao().DB().Where("user_id = ?", user.ID).Find(&comments)
 			for _, c := range comments {
-				dao.DelComment(&c)           // Delete parent comment
-				dao.DelCommentChildren(c.ID) // Delete all child comments
+				app.Dao().DelComment(&c)           // Delete parent comment
+				app.Dao().DelCommentChildren(c.ID) // Delete all child comments
 			}
 			
 			// Mengembalikan data user sebagai response JSON
