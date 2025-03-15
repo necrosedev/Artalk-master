@@ -56,7 +56,7 @@ func GetProviders(conf *config.Config) []goth.Provider {
 	}
 	// @see https://developers.google.com/identity/protocols/oauth2
 	if googleConf := conf.Auth.Google; googleConf.Enabled {
-		providers = append(providers, google.New(googleConf.ClientID, googleConf.ClientSecret, callbackURL("google")))
+		providers = append(providers, google.New(googleConf.ClientID, googleConf.ClientSecret, callbackURL("google"), "email", "profile"))
 	}
 	// @see https://docs.joinmastodon.org/spec/oauth/
 	if mastodonConf := conf.Auth.Mastodon; mastodonConf.Enabled {
