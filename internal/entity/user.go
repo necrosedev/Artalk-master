@@ -22,6 +22,7 @@ type User struct {
 	LastIP         string
 	LastUA         string
 	IsAdmin        bool
+	is_banned	   bool
 	ReceiveEmail   bool `gorm:"default:true"`
 	TokenValidFrom sql.NullTime
 
