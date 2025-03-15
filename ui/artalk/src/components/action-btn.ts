@@ -38,7 +38,7 @@ export default class ActionBtn {
     this.$el = Utils.createElement(`<span class="atk-common-action-btn"></span>`)
 
     this.opts = typeof opts !== 'object' ? { text: opts } : opts
-    this.$el.innerText = this.getText()
+    this.$el.innerHTML = this.getText()
 
     // 仅管理员可操作
     if (this.opts.adminOnly) this.$el.setAttribute('atk-only-admin-show', '')

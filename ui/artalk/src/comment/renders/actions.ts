@@ -28,7 +28,7 @@ function renderVote(r: Render) {
   r.voteBtnUp = new ActionBtn(() => 
     `${$t('voteUp')} (<span style="color: ${r.data.vote_up ? 'green' : 'inherit'};">${r.data.vote_up || 0}</span>)`
   ).appendTo(r.$actions)
-  
+
   r.voteBtnUp.setClick(() => {
     r.comment.getActions().vote('up')
   })
@@ -37,7 +37,7 @@ function renderVote(r: Render) {
   if (r.opts.voteDown) {
     r.voteBtnDown = new ActionBtn(() => 
       `${$t('voteDown')} (<span style="color: ${r.data.vote_down ? 'red' : 'inherit'};">${r.data.vote_down || 0}</span>)`
-    ).appendTo(r.$actions)
+    ).appendTo(r.$actions);
     
     r.voteBtnDown.setClick(() => {
       r.comment.getActions().vote('down')
