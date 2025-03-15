@@ -112,10 +112,10 @@ func CommentCreate(app *core.App, router fiber.Router) {
 			return common.RespError(c, 500, i18n.T("Comment failed"))
 		}
 
-		if user.is_banned {
+		if user.IsBanned {
 			return common.RespError(c, 500, i18n.T("Comment failed"))
 		}
-		
+
 		// Create new comment entity
 		comment := entity.Comment{
 			Content:  p.Content,
