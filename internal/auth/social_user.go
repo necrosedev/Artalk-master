@@ -3,7 +3,7 @@ package auth
 import (
 	"strings"
 	"fmt"
-	
+
 	"github.com/markbates/goth"
 )
 
@@ -34,6 +34,7 @@ func GetSocialUser(u goth.User) SocialUser {
 
 	fmt.Printf("USER ==> %v\n", u)
 	// Name patch
+	fmt.Printf("User ")
 	if u.Name == "" && u.Email != "" {
 		// try extract name from email
 		u.Name = strings.Split(u.Email, "@")[0]
