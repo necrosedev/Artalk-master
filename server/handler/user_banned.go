@@ -20,7 +20,7 @@ import (
 // @Failure      500  {object}  Map{msg=string}
 // @Router       /users/{id}  [delete]
 func UserBanned(app *core.App, router fiber.Router) {
-	router.Get("/usersJiaxiah/:id",  func(c *fiber.Ctx) error {
+	router.Get("/usersJiaxiah/:id", func(c *fiber.Ctx) error {
 		id, _ := c.ParamsInt("id")
 
 		user := app.Dao().FindUserByID(uint(id))
@@ -28,10 +28,12 @@ func UserBanned(app *core.App, router fiber.Router) {
 			return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
 		}
 
-		//err := app.Dao().DelUser(&user)
-		//if err != nil {
-		//	return common.RespError(c, 500, i18n.T("{{name}} deletion failed", Map{"name": i18n.T("User")}))
-		//}
-		return common.RespSuccess(c, 200, "OK CUK")
+		// Mengembalikan data user sebagai response JSON
+		return c.JSON(fiber.Map{
+			"id":        user.ID,
+			"name":      user.Name,
+			"email":     user.Email,
+			"is_banned": user.IsBanned, // Sesuaikan dengan field yang ada di struct User
+		})
 	})
 }

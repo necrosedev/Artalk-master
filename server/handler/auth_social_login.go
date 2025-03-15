@@ -1,8 +1,6 @@
 package handler
 
 import (
-	"fmt"
-
 	"github.com/artalkjs/artalk/v2/internal/auth"
 	"github.com/artalkjs/artalk/v2/internal/auth/gothic_fiber"
 	"github.com/artalkjs/artalk/v2/internal/core"
