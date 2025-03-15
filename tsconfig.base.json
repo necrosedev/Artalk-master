@@ -6,7 +6,7 @@
     "lib": ["esnext", "dom"],
     "moduleResolution": "bundler",
     "strict": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,

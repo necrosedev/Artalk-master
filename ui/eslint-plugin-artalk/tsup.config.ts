@@ -7,7 +7,7 @@ const shared: Options = {
   shims: true,
   splitting: false,
   bundle: true,
-  sourcemap: true,
+  sourcemap: false,
   clean: false,
   dts: true,
 }
