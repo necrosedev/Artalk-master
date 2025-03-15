@@ -70,6 +70,8 @@ func AuthSocialLogin(app *core.App, router fiber.Router) {
 
 		// Fetch user
 		gothUser, err := gothic_fiber.CompleteUserAuth(c)
+		fmt.Printf("USERx ==>>> %+v\n", gothUser)
+		
 		if err != nil {
 			log.Error("[SocialLogin] ", err)
 			return common.RespError(c, 500, "Field to complete user auth")
