@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"fmt"
+	
 	"github.com/artalkjs/artalk/v2/internal/auth"
 	"github.com/artalkjs/artalk/v2/internal/auth/gothic_fiber"
 	"github.com/artalkjs/artalk/v2/internal/core"
@@ -71,7 +73,7 @@ func AuthSocialLogin(app *core.App, router fiber.Router) {
 		// Fetch user
 		gothUser, err := gothic_fiber.CompleteUserAuth(c)
 		fmt.Printf("USERx ==>>> %+v\n", gothUser)
-		
+
 		if err != nil {
 			log.Error("[SocialLogin] ", err)
 			return common.RespError(c, 500, "Field to complete user auth")
