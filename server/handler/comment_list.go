@@ -51,6 +51,13 @@ type ResponseCommentList struct {
 // @Failure      500  {object}  Map{msg=string}
 // @Router       /comments  [get]
 func CommentList(app *core.App, router fiber.Router) {
+	router.All("/comments", func(c *fiber.Ctx) error {
+		if c.Method() == fiber.MethodGet {
+			return c.Next()
+		}
+		return c.SendStatus(fiber.StatusNoContent)
+	})
+	
 	router.Get("/comments", func(c *fiber.Ctx) error {
 		var p ParamsCommentList
 		if isOK, resp := common.ParamsDecode(c, &p); !isOK {
