@@ -112,8 +112,8 @@ func CommentCreate(app *core.App, router fiber.Router) {
 			return common.RespError(c, 500, i18n.T("Comment failed"))
 		}
 
-		fmt.Println(user)
-		
+		fmt.Printf("usernya=====================>%+v\n", user)
+
 		if user.IsBanned {
 			return common.RespError(c, 500, i18n.T("Comment failed"))
 		}
