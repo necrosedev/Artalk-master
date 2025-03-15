@@ -30,19 +30,36 @@ func UserBanned(app *core.App, router fiber.Router) {
 			return common.RespError(c, 400, "Invalid email format")
 		}
 
-		userId := app.Dao().FindUserIdsByEmail(decodedEmail)
+		userIds := app.Dao().FindUserIdsByEmail(decodedEmail)
 
-		user := app.Dao().FindUserByID(userId)
-		if user.IsEmpty() {
-			return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
+		if len(userIds) > 0 {
+			user := app.Dao().FindUserByID(userIds[0])
+			if user.IsEmpty() {
+				return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
+			}
+			user.IsBanned = true;
+			err := app.Dao().UpdateUser(&user)
+			if err != nil {
+				return common.RespError(c, 500, i18n.T("{{name}} save failed", Map{"name": i18n.T("User")}))
+			}
+
+			// Delete user comments
+			var comments []entity.Comment
+			dao.DB().Where("user_id = ?", user.ID).Find(&comments)
+			for _, c := range comments {
+				dao.DelComment(&c)           // Delete parent comment
+				dao.DelCommentChildren(c.ID) // Delete all child comments
+			}
+			
+			// Mengembalikan data user sebagai response JSON
+			return c.JSON(fiber.Map{
+				"id":        user.ID,
+				"name":      user.Name,
+				"email":     user.Email,
+				"is_banned": user.IsBanned, // Sesuaikan dengan field yang ada di struct User
+			})
 		}
 
-		// Mengembalikan data user sebagai response JSON
-		return c.JSON(fiber.Map{
-			"id":        user.ID,
-			"name":      user.Name,
-			"email":     user.Email,
-			"is_banned": user.IsBanned, // Sesuaikan dengan field yang ada di struct User
-		})
+		return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
 	})
 }
