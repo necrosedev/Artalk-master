@@ -31,8 +31,7 @@ func GetSocialUser(u goth.User) SocialUser {
 	if u.Email == "" {
 		u.Email = u.UserID + "@" + u.Provider + ".com"
 	}
-
-	fmt.Printf("USER ==> %v\n", u)
+	
 	// Name patch
 	fmt.Printf("User ")
 	if u.Name == "" && u.Email != "" {
