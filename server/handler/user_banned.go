@@ -1,8 +1,6 @@
 package handler
 
 import (
-	"net/url" // ⬅️ Tambahkan ini
-
 	"github.com/artalkjs/artalk/v2/internal/core"
 	"github.com/artalkjs/artalk/v2/internal/i18n"
 	"github.com/artalkjs/artalk/v2/server/common"
