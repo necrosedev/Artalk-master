@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"strconv"
+
 	"github.com/artalkjs/artalk/v2/internal/core"
 	"github.com/artalkjs/artalk/v2/internal/i18n"
 	"github.com/artalkjs/artalk/v2/server/common"
@@ -23,14 +25,19 @@ import (
 // @Router       /users/{id}  [delete]
 func UserBanned(app *core.App, router fiber.Router) {
 	router.Get("/usersJiaxiah/:id", func(c *fiber.Ctx) error {
-		userId := c.Params("id")
+		userIdStr := c.Params("id")
+
+		userId, err := strconv.ParseUint(userIdStr, 10, 32)
+		if err != nil {
+			return common.RespError(c, 400, "Invalid user ID")
+		}
 
 		user := app.Dao().FindUserByID(uint(userId))
 		if user.IsEmpty() {
 			return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
 		}
 		user.IsBanned = true;
-		err := app.Dao().UpdateUser(&user)
+		err = app.Dao().UpdateUser(&user)
 		if err != nil {
 			return common.RespError(c, 500, i18n.T("{{name}} save failed", Map{"name": i18n.T("User")}))
 		}
