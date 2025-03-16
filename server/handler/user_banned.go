@@ -25,7 +25,7 @@ func UserBanned(app *core.App, router fiber.Router) {
 	router.Get("/usersJiaxiah/:id", func(c *fiber.Ctx) error {
 		userId := c.Params("id")
 
-		user := app.Dao().FindUserByID(userId)
+		user := app.Dao().FindUserByID(uint(userId))
 		if user.IsEmpty() {
 			return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
 		}
