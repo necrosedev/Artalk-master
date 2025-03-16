@@ -86,8 +86,9 @@
         &.atk-nick,
         &.atk-nick a {
           font-size: 14px;
-          color: var(--at-color-main);
+          color: #333;
           text-decoration: none;
+          font-weight: 600;
         }
 
         &.atk-reply-at {
@@ -105,7 +106,8 @@
           }
 
           & > .atk-nick {
-            color: var(--at-color-main);
+            color: #333;
+            font-weight: 500;
             cursor: pointer;
             margin-left: 6px;
           }

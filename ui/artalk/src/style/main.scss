@@ -552,12 +552,13 @@
 
 /* Common Action Btn */
 .atk-common-action-btn {
-  color: var(--at-color-meta);
+  color: #e50a4a;
   font-size: 13px;
-  line-height: 25px;
+  line-height: 18px;
   display: inline-flex;
   cursor: pointer;
   user-select: none;
+  font-weight: 500;
 
   &.atk-error,
   &.atk-error:hover {

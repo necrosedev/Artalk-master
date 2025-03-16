@@ -4,10 +4,12 @@
   & > .atk-list-header {
     display: flex;
     flex-direction: row;
-    padding: 10px 17px 10px 17px;
+    padding: 10px;
+    font-weight: 600;
 
     .atk-text {
       display: inline-block;
+      color: #e50a4a;
     }
 
     /* 下拉选择层 */
@@ -186,15 +188,14 @@
     border-radius: $block-radius;
     border: 1px solid transparent;
     display: flex;
-    height: 30px;
+    height: 50px;
     flex-direction: row;
     place-content: center;
     align-items: center;
-    width: 120px;
     margin: 0 auto;
     margin-top: -15px;
-    background: var(--at-color-bg);
-    border-color: var(--at-color-border);
+    background: #e50a4a;
+    border-color: #cd0942;
 
     & > .atk-loading-icon {
       height: 15px;
@@ -202,13 +203,12 @@
     }
 
     & > .atk-text {
-      color: var(--at-color-meta);
+      color: #fff;
     }
 
     &:hover {
-      background: var(--at-color-bg-grey);
-      & > .atk-text {
-      }
+      background: #b4083a;
+      border-color: #92062f;
     }
   }
 }
