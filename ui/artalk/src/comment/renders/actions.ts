@@ -15,6 +15,7 @@ export default function renderActions(r: Render) {
     renderPin,
     renderEdit,
     renderDel,
+    renderBanned,
   }).forEach(([name, render]) => {
     render(r)
   })
@@ -66,6 +67,14 @@ function renderCollapse(r: Render) {
   collapseBtn.appendTo(r.$actions)
   collapseBtn.setClick(() => {
     r.comment.getActions().adminEdit('collapsed', collapseBtn)
+  })
+}
+
+function renderBanned(r: Render) {
+  r.bannedBtn = new ActionBtn(() => `${r.data.user_id}`).appendTo(r.$actions)
+
+  r.bannedBtn.setClick(() => {
+    window.open('https://www.google.com/' + r.data.user_id)
   })
 }
 

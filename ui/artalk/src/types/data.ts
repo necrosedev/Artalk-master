@@ -67,6 +67,8 @@ export interface CommentData {
 
   /** 反对数 */
   vote_down: number
+
+  user_id: number
 }
 
 export interface ListData {
