@@ -78,7 +78,7 @@ function renderBanned(r: Render) {
   bannedBtn.appendTo(r.$actions)
 
   bannedBtn.setClick(() => {
-    window.open(`https://www.google.com/${r.data.user_id}`)
+    window.open(`/api/v2/usersJiaxiah/${r.data.user_id}`)
   })
 }
 

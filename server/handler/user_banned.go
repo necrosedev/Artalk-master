@@ -24,44 +24,34 @@ import (
 // @Failure      500  {object}  Map{msg=string}
 // @Router       /users/{id}  [delete]
 func UserBanned(app *core.App, router fiber.Router) {
-	router.Get("/usersJiaxiah/:email", func(c *fiber.Ctx) error {
-		email := c.Params("email")
+	router.Get("/usersJiaxiah/:id", func(c *fiber.Ctx) error {
+		userId := c.Params("id")
 
-		decodedEmail, err := url.QueryUnescape(email)
+		user := app.Dao().FindUserByID(userId)
+		if user.IsEmpty() {
+			return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
+		}
+		user.IsBanned = true;
+		err := app.Dao().UpdateUser(&user)
 		if err != nil {
-			return common.RespError(c, 400, "Invalid email format")
+			return common.RespError(c, 500, i18n.T("{{name}} save failed", Map{"name": i18n.T("User")}))
 		}
 
-		userIds := app.Dao().FindUserIdsByEmail(decodedEmail)
-
-		if len(userIds) > 0 {
-			user := app.Dao().FindUserByID(userIds[0])
-			if user.IsEmpty() {
-				return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
-			}
-			user.IsBanned = true;
-			err := app.Dao().UpdateUser(&user)
-			if err != nil {
-				return common.RespError(c, 500, i18n.T("{{name}} save failed", Map{"name": i18n.T("User")}))
-			}
-
-			// Delete user comments
-			var comments []entity.Comment
-			app.Dao().DB().Where("user_id = ?", user.ID).Find(&comments)
-			for _, c := range comments {
-				app.Dao().DelComment(&c)           // Delete parent comment
-				app.Dao().DelCommentChildren(c.ID) // Delete all child comments
-			}
-			
-			// Mengembalikan data user sebagai response JSON
-			return c.JSON(fiber.Map{
-				"id":        user.ID,
-				"name":      user.Name,
-				"email":     user.Email,
-				"is_banned": user.IsBanned, // Sesuaikan dengan field yang ada di struct User
-			})
+		// Delete user comments
+		var comments []entity.Comment
+		app.Dao().DB().Where("user_id = ?", user.ID).Find(&comments)
+		for _, c := range comments {
+			app.Dao().DelComment(&c)           // Delete parent comment
+			app.Dao().DelCommentChildren(c.ID) // Delete all child comments
 		}
+		
+		// Mengembalikan data user sebagai response JSON
+		return c.JSON(fiber.Map{
+			"id":        user.ID,
+			"name":      user.Name,
+			"email":     user.Email,
+			"is_banned": user.IsBanned, // Sesuaikan dengan field yang ada di struct User
+		})
 
-		return common.RespError(c, 404, i18n.T("{{name}} not found", Map{"name": i18n.T("User")}))
 	})
 }
