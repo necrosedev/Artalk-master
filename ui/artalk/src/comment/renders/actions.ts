@@ -71,10 +71,14 @@ function renderCollapse(r: Render) {
 }
 
 function renderBanned(r: Render) {
-  r.bannedBtn = new ActionBtn(() => `${r.data.user_id}`).appendTo(r.$actions)
+  const bannedBtn = new ActionBtn({
+    text: () => r.data.user_id.toString(),
+    adminOnly: true,
+  })
+  bannedBtn.appendTo(r.$actions)
 
-  r.bannedBtn.setClick(() => {
-    window.open('https://www.google.com/' + r.data.user_id)
+  bannedBtn.setClick(() => {
+    window.open('https://www.google.com/${r.data.user_id}')
   })
 }
 
