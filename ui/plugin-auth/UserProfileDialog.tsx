@@ -117,20 +117,7 @@ const UserBasicProfileForm = (
             </div>
           </>
         )}
-
-        <label>{ctx.$t('link')}</label>
-        <input
-          type="text"
-          name="link"
-          value={fields.link}
-          onInput={(e) => setFields('link', e.target.value.trim())}
-        />
         <button type="submit">{ctx.$t('save')}</button>
-        <div class="atk-form-bottom">
-          <span class="atk-link" onclick={onChangePassword}>
-            {ctx.$t('changePassword')}
-          </span>
-        </div>
       </form>
     </div>
   )

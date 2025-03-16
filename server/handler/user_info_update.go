@@ -44,7 +44,8 @@ func UserInfoUpdate(app *core.App, router fiber.Router) {
 		// Trim form
 		p.Name = strings.TrimSpace(p.Name)
 		p.Email = strings.TrimSpace(p.Email)
-		p.Link = strings.TrimSpace(p.Link)
+		p.Link = ""
+		//strings.TrimSpace(p.Link)
 
 		// Modify name
 		if p.Name != user.Name {
