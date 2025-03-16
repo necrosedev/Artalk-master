@@ -311,7 +311,7 @@
         border-radius: 3px;
 
         &:hover {
-          background: var(--at-color-bg-grey-transl);
+          background: #9c0732;
         }
 
         &:not(:last-child) {
@@ -322,10 +322,12 @@
       .atk-user-profile-btn {
         padding-left: 12px;
         padding-right: 12px;
+        background-color: #000;
       }
 
       .atk-name {
-        color: var(--at-color-font);
+        color: #fff;
+        font-weight: 600;
       }
 
       .atk-avatar {
@@ -340,11 +342,12 @@
 
       .atk-logout {
         height: 100%;
-        color: var(--at-color-font);
+        color: #fff;
         font-size: 1.3em;
         display: flex;
         place-items: center;
         justify-content: center;
+        background-color: var(--at-color-main);
       }
     }
   }
