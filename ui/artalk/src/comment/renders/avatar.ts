@@ -27,12 +27,27 @@ export default function renderAvatar(r: Render) {
 
     function getInitials(name: string): string {
       const words = name.split(" ").filter(word => word.length > 0);
+      let initials = "";
+      
       if (words.length > 1) {
-          return words.map(word => word[0].toUpperCase()).join("");
+          initials = words.map(word => word[0].toUpperCase()).join("").substring(0, 2);
+      } else {
+          initials = name.substring(0, 2).toUpperCase();
       }
-      return name.substring(0, 2).toUpperCase();
+      
+      // Jika karakter kedua adalah emoji atau simbol non-alfabet, hanya ambil karakter pertama
+      if (initials.length > 1 && /[^a-zA-Z0-9]/.test(initials[1])) {
+          initials = initials[0] + "-";
+      }
+      
+      // Jika semua karakter bukan huruf atau angka, kembalikan "NA"
+      if (!/[a-zA-Z0-9]/.test(initials)) {
+          return "--";
+      }
+      
+      return initials;
     }
-    
+
     function hashStringToColor(name: string): string {
       let hash = 0;
       for (let i = 0; i < name.length; i++) {
