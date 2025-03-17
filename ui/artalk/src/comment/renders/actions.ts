@@ -23,7 +23,7 @@ export default function renderActions(r: Render) {
 
 // 操作按钮 - 投票
 function renderVote(r: Render) {
-  if (!r.opts.vote) return // 关闭投票功能
+  /*if (!r.opts.vote) return // 关闭投票功能
 
   // 赞同按钮
   r.voteBtnUp = new ActionBtn(() => 
@@ -33,11 +33,11 @@ function renderVote(r: Render) {
   r.voteBtnUp.setClick(() => {
     r.comment.getActions().vote('up')
   })
-
+  */
   // 反对按钮
   if (r.opts.voteDown) {
     r.voteBtnDown = new ActionBtn(() => 
-      `${$t('voteDown')} (<span style="color: ${r.data.vote_down ? 'red' : 'inherit'};">${r.data.vote_down || 0}</span>)`
+      `<span style="color:#999">Report</span>`
     ).appendTo(r.$actions);
     
     r.voteBtnDown.setClick(() => {
