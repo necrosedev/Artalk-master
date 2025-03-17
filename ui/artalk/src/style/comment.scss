@@ -48,10 +48,18 @@
   padding: 10px;
 
   & > .atk-avatar {
-    display: block;
-    padding: 2px 0;
     float: left;
-
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    border-radius: 20%;
+    text-transform: uppercase;
+    
     img {
       width: 50px;
       height: 50px;
@@ -61,6 +69,7 @@
 
   & > .atk-main {
     display: block;
+    margin-left: 63px;
 
     & > .atk-header {
       line-height: 1.5;
