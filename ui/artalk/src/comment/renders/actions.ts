@@ -7,8 +7,8 @@ import $t from '@/i18n'
  */
 export default function renderActions(r: Render) {
   Object.entries({
-    renderVote,
     renderReply,
+    renderVote,
     // 管理员操作
     renderCollapse,
     renderModerator,
