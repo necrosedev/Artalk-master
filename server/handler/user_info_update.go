@@ -43,8 +43,8 @@ func UserInfoUpdate(app *core.App, router fiber.Router) {
 
 		// Trim form
 		p.Name = strings.TrimSpace(p.Name)
-		p.Email = strings.TrimSpace(p.Email)
-		p.Link = ""
+		//p.Email = strings.TrimSpace(p.Email)
+		//p.Link = ""
 		//strings.TrimSpace(p.Link)
 
 		// Modify name
@@ -61,6 +61,7 @@ func UserInfoUpdate(app *core.App, router fiber.Router) {
 			user.Name = p.Name
 		}
 
+		/*
 		// Modify email
 		// (Verify sent email code first)
 		if p.Email != user.Email {
@@ -83,7 +84,7 @@ func UserInfoUpdate(app *core.App, router fiber.Router) {
 
 			user.Email = p.Email
 		}
-
+		
 		// Modify link
 		if p.Link != "" {
 			// Check link format
@@ -92,7 +93,7 @@ func UserInfoUpdate(app *core.App, router fiber.Router) {
 			}
 
 			user.Link = p.Link
-		}
+		}*/
 
 		if err := app.Dao().UpdateUser(&user); err != nil {
 			return common.RespError(c, 500, "Failed to update user")

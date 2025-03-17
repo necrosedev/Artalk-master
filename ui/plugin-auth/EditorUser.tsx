@@ -41,7 +41,7 @@ const EditorUser = ({ ctx }: { ctx: AuthContext }) => {
         <div class="atk-editor-user">
           <div class="atk-user-profile-btn atk-user-btn" onClick={openUserProfileDialog}>
             {/* <div class="atk-avatar" style={{ "background-image": `url('https://avatars.githubusercontent.com/u/76841221?s=200&v=4')` }}></div> */}
-            <div class="atk-name">{user().name}</div>
+            <div class="atk-name">Ubah Nama</div>
           </div>
           <div class="atk-logout atk-user-btn" onClick={logoutHandler} aria-label="Logout">
             <svg

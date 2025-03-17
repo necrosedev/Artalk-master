@@ -95,6 +95,7 @@ const UserBasicProfileForm = (
           type="email"
           name="email"
           required
+          readonly
           value={fields.email}
           onInput={(e) => {
             setFields('code', '')
