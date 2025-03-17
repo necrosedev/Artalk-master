@@ -101,7 +101,7 @@ export default class ActionBtn {
   public updateText(text?: (() => string) | string) {
     if (text) this.opts.text = text
     this.setLoading(false)
-    this.$el.innerText = this.getText()
+    this.$el.innerHTML = this.getText()
   }
 
   /** 设置加载状态 */

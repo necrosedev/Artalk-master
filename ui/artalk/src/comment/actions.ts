@@ -32,7 +32,7 @@ export default class CommentActions {
         this.data.vote_up = res.data.up
         this.data.vote_down = res.data.down
         this.comment.getRender().voteBtnUp?.updateText()
-        this.comment.getRender().voteBtnDown?.updateText()
+        this.comment.getRender().voteBtnDown?.updateText("<span style='color:#ccc'>Done</span>")
       })
       .catch((err) => {
         actionBtn?.setError($t('voteFail'))
