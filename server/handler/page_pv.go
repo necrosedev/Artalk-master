@@ -29,14 +29,16 @@ type ResponsePagePV struct {
 func PagePV(app *core.App, router fiber.Router) {
 	//mutexMap := sync.NewKeyMutex[string]()
 
-	router.Any("/pages/pv", func(c *fiber.Ctx) error {
-		//if c.Method() == fiber.MethodPost {
-		//	return c.Next() // Lanjutkan ke handler POST
-		//}
+	router.All("/pages/pv", func(c *fiber.Ctx) error {
+		if c.Method() == fiber.MethodPost {
+			return c.Next() // Lanjutkan ke handler POST
+		}
 		return c.SendStatus(fiber.StatusNoContent) // 204 untuk metode selain POST
 	})
-	/*
+	
 	router.Post("/pages/pv", func(c *fiber.Ctx) error {
+		return c.SendStatus(fiber.StatusNoContent) // 204 untuk metode selain POST
+		/*
 		var p ParamsPagePV
 		if isOK, resp := common.ParamsDecode(c, &p); !isOK {
 			return resp
@@ -57,8 +59,7 @@ func PagePV(app *core.App, router fiber.Router) {
 
 		return common.RespData(c, ResponsePagePV{
 			PV: page.PV,
-		})
+		})*/
 	})
-	*/
 	
 }
