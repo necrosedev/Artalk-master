@@ -29,7 +29,7 @@ type ResponsePagePV struct {
 func PagePV(app *core.App, router fiber.Router) {
 	//mutexMap := sync.NewKeyMutex[string]()
 
-	router.All("/pages/pv", func(c *fiber.Ctx) error {
+	router.Any("/pages/pv", func(c *fiber.Ctx) error {
 		//if c.Method() == fiber.MethodPost {
 		//	return c.Next() // Lanjutkan ke handler POST
 		//}
