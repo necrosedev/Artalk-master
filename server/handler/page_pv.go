@@ -35,7 +35,7 @@ func PagePV(app *core.App, router fiber.Router) {
 		}
 		return c.SendStatus(fiber.StatusNoContent) // 204 untuk metode selain POST
 	})
-	
+	/*
 	router.Post("/pages/pv", func(c *fiber.Ctx) error {
 		var p ParamsPagePV
 		if isOK, resp := common.ParamsDecode(c, &p); !isOK {
@@ -59,6 +59,6 @@ func PagePV(app *core.App, router fiber.Router) {
 			PV: page.PV,
 		})
 	})
-
+	*/
 	
 }

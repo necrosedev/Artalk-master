@@ -125,7 +125,7 @@ export default class Artalk {
 
   /** Load count widget */
   public static loadCountWidget(c: ConfigPartial) {
-    const conf = handelCustomConf(c, true)
+    /*const conf = handelCustomConf(c, true)
 
     Stat.initCountWidget({
       getApi: () => new Api(convertApiOptions(conf)),
@@ -134,7 +134,7 @@ export default class Artalk {
       pvEl: conf.pvEl,
       pageKeyAttr: conf.statPageKeyAttr,
       pvAdd: false,
-    })
+    })*/
   }
 
   // ===========================
