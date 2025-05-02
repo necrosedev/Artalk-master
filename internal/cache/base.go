@@ -80,6 +80,7 @@ func New(conf config.CacheConf) (*Cache, error) {
 			store.WithExpiration(cache.ttl),
 		)
 
+		
 	default:
 		log.Fatal(`Invalid cache type "` + conf.Type + `", please check config option "cache.type"`)
 

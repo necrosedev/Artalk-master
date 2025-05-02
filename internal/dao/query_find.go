@@ -173,12 +173,21 @@ func (dao *Dao) FindSiteByID(id uint) entity.Site {
 	return site
 }
 
-func (dao *Dao) FindAllSites() []entity.Site {
+/*func (dao *Dao) FindAllSites() []entity.Site {
 	var sites []entity.Site
 	dao.DB().Model(&entity.Site{}).Find(&sites)
 
 	return sites
+}*/
+func (dao *Dao) FindAllSites() []entity.Site {
+	sites, _ := QueryDBWithCache(dao, "sitelk21#all", func() ([]entity.Site, error) {
+		var sites []entity.Site
+		dao.DB().Model(&entity.Site{}).Find(&sites)
+		return sites, nil
+	})
+	return sites
 }
+
 
 // #region Notify
 func (dao *Dao) FindNotify(userID uint, commentID uint) entity.Notify {
