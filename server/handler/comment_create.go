@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/artalkjs/artalk/v2/internal/core"
 	"github.com/artalkjs/artalk/v2/internal/entity"
@@ -114,6 +115,27 @@ func CommentCreate(app *core.App, router fiber.Router) {
 
 		if user.IsBanned {
 			return common.RespError(c, 500, i18n.T("Comment failed"))
+		}
+
+		bannedAja := []string{"ktl", "kontol", "kontl", "entod", "entot", "lonte", "memek", "kemem", "jawa", "idlix", "moviegen", "moviesgen", "anak haram", "pukimak", "pilat", "pler", "tolol", "peak", "bangsat"}
+
+		for _, sub := range bannedAja {
+			if strings.Contains(p.Content, sub) {
+				user.IsBanned = true;
+				err = app.Dao().UpdateUser(&user)
+				if err != nil {
+					return common.RespError(c, 500, i18n.T("{{name}} save failed", Map{"name": i18n.T("User")}))
+				}
+
+				// Delete user comments
+				var comments []entity.Comment
+				app.Dao().DB().Where("user_id = ?", user.ID).Find(&comments)
+				for _, c := range comments {
+					app.Dao().DelComment(&c)           // Delete parent comment
+					app.Dao().DelCommentChildren(c.ID) // Delete all child comments
+				}
+				return common.RespError(c, 500, i18n.T("Comment failed"))
+			}
 		}
 
 		// Create new comment entity
