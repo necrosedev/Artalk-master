@@ -117,7 +117,7 @@ func CommentCreate(app *core.App, router fiber.Router) {
 			return common.RespError(c, 500, i18n.T("Comment failed"))
 		}
 
-		bannedAja := []string{"ktl", "kontol", "kontl", "entod", "entot", "lonte", "memek", "kemem", "jawa", "idlix", "moviegen", "moviesgen", "anak haram", "pukimak", "pilat", "pler", "tolol", "peak", "bangsat"}
+		bannedAja := []string{"ktl", "kontol", "kontl", "entod", "entot", "lonte", "memek", "kemem", "jawa", "idlix", "moviegen", "moviesgen", "anak haram", "pukimak", "pilat", "pler", "tolol", "peak", "bangsat", "kampang", "pantek"}
 
 		for _, sub := range bannedAja {
 			if strings.Contains(p.Content, sub) {
